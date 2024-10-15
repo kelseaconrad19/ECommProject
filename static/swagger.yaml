@@ -11,6 +11,14 @@ consumes:
 produces:
   - 'application/json'
 
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: |
+      Use "Bearer {token}" format for the token. The token is required for all customer endpoints.
+
 paths:
   /auth/login:
     post:
@@ -41,6 +49,8 @@ paths:
         - Customers
       summary: "Get all Customers"
       description: "Retrieve a list of all customers"
+      security:
+        - Bearer: []
       responses:
         '200':
           description: 'Successful response'
@@ -57,6 +67,8 @@ paths:
         - Customers
       summary: "Create a new customer"
       description: "Endpoint to save a new customer to the database."
+      security:
+        - Bearer: []
       parameters:
         - in: "body"
           name: "body"
@@ -80,6 +92,8 @@ paths:
         - Customers
       summary: "Get customer by ID"
       description: "Retrieve a customer by their unique ID"
+      security:
+        - Bearer: []
       parameters:
         - name: "id"
           in: "path"
@@ -100,6 +114,8 @@ paths:
         - Customers
       summary: "Update a customer"
       description: "Update a customer by their unique ID"
+      security:
+        - Bearer: []
       parameters:
         - name: "id"
           in: "path"
@@ -127,6 +143,8 @@ paths:
         - Customers
       summary: "Delete customer by ID"
       description: "Delete a customer by their unique ID"
+      security:
+        - Bearer: []
       parameters:
         - name: "id"
           in: "path"
@@ -164,6 +182,8 @@ paths:
         - Products
       summary: "Create a new product"
       description: "Endpoint to create a new product"
+      security:
+        - Bearer: []
       parameters:
         - in: "body"
           name: "body"
@@ -207,6 +227,8 @@ paths:
         - Products
       summary: "Update product by ID"
       description: "Update a product by its unique ID"
+      security:
+        - Bearer: []
       parameters:
         - name: "id"
           in: "path"
@@ -232,6 +254,8 @@ paths:
         - Products
       summary: "Delete product by ID"
       description: "Delete a product by its unique ID"
+      security:
+        - Bearer: []
       parameters:
         - name: "id"
           in: "path"
