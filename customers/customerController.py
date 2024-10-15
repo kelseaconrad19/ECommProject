@@ -6,7 +6,7 @@ from application.caching import cache
 from application.limiter import limiter
 from application.decorators import token_required, admin_required
 
-@admin_required
+# @admin_required
 def add_customer():
     try:
         customer_data = customer_schema.load(request.get_json())
@@ -18,8 +18,8 @@ def add_customer():
     else:
         return jsonify({'message': 'Fallback method error activated', 'body': customer_data}), 400
 
-@token_required
-@cache.cached(timeout=300)
+# @token_required
+# @cache.cached(timeout=300)
 def view_customer(id):
     customer = customerServices.view_customer(id)
     if customer:
@@ -27,14 +27,14 @@ def view_customer(id):
     else:
         return {"error": "Customer not found"}, 404
 
-@admin_required
+# @admin_required
 def update_customer(id):
     customer_data = customer_schema.load(request.get_json())
     customer, status_code = customerServices.update_customer(id, customer_data)
     return jsonify(customer), status_code
 
-@admin_required
-@limiter.limit("1 per day")
+# @admin_required
+# @limiter.limit("1 per day")
 def delete_customer(id):
     customer = customerServices.delete_customer(id)
     if customer:

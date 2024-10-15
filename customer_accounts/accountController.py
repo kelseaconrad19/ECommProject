@@ -6,7 +6,7 @@ from application.caching import cache
 from application.limiter import limiter
 
 
-@limiter.limit("50 per day")
+# @limiter.limit("50 per day")
 def add_customer_account():
     try:
         account_data = customer_account_schema.load(request.json)
@@ -23,7 +23,7 @@ def view_customer_account(customer_account_id):
 
 
 
-@limiter.limit("5 per day")
+# @limiter.limit("5 per day")
 def update_customer_account(customer_account_id):
     try:
         account_data = customer_account_schema.load(request.json, partial=True)
@@ -34,7 +34,7 @@ def update_customer_account(customer_account_id):
     return jsonify(updated_account), status_code
 
 
-@limiter.limit("5 per day")
+# @limiter.limit("5 per day")
 def delete_customer_account(customer_account_id):
     response, status_code = accountServices.delete_customer_account(customer_account_id)
     return jsonify(response), status_code

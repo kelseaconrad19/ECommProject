@@ -5,7 +5,7 @@ from marshmallow import ValidationError
 from application.caching import cache
 from application.limiter import limiter
 
-@limiter.limit("50 per day")
+# @limiter.limit("50 per day")
 def add_order():
     try:
         # Load the order data from the request JSON
@@ -18,7 +18,7 @@ def add_order():
     return jsonify(new_order), status_code
 
 
-@cache.cached(timeout=300)
+# @cache.cached(timeout=300)
 def view_order(id):
     order = orderServices.view_order(id)
     if order:

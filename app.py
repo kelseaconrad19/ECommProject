@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, app
 from flask_swagger_ui import get_swaggerui_blueprint
 from application.caching import cache
-from application.limiter import limiter
+# from application.limiter import limiter
 
 from schemas import *
 from models import *
@@ -33,7 +33,7 @@ def create_app(config_name):
     my_app.config.update(cache_config)
 
     cache.init_app(my_app)
-    limiter.init_app(my_app)
+    # limiter.init_app(my_app)
 
     my_app.register_blueprint(authBP, url_prefix='/auth')
     my_app.register_blueprint(customer_blueprint, url_prefix='/customers')
