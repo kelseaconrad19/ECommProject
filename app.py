@@ -41,6 +41,11 @@ def create_app(config_name):
     my_app.register_blueprint(order_blueprint, url_prefix='/orders')
     my_app.register_blueprint(product_blueprint, url_prefix='/products')
     my_app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
+
+    @my_app.route("/", methods=["GET"])
+    def index():
+        return jsonify({"message": "Welcome to the eCommerce Project API!"})
+
     db.init_app(my_app)
     my_app.app_context().push()
     ma.init_app(my_app)
