@@ -46,11 +46,11 @@ def create_app(config_name):
     ma.init_app(my_app)
 
 
-    return my_app, cache, limiter
+    return my_app
 
 
 if __name__ == "__main__":
-    app, cache, limiter = create_app('DevelopmentConfig')
+    app = create_app('ProductionConfig')
 
     with app.app_context():
         db.create_all()

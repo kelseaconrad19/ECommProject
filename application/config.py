@@ -14,8 +14,16 @@ class TestingConfig:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+class ProductionConfig(Config):
+    """Production-specific configuration."""
+    SQLALCHEMY_DATABASE_URI = 'postgresql://m16l2assignment_user:jaVndQdAFRwMQKNCbHC5k3IZ5JFDMber@dpg-cs782at6l47c7393anlg-a.oregon-postgres.render.com/m16l2assignment'
+    DEBUG = False
+    CACHE_TYPE = "SimpleCache"
+    CACHE_DEFAULT_TIMEOUT = 300
+
 
 config = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
+    'production': ProductionConfig,
 }
