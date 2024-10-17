@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, app
 from flask_swagger_ui import get_swaggerui_blueprint
 from application.caching import cache
-# from application.limiter import limiter
 
 from schemas import *
 from models import *
